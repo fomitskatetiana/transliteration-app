@@ -15,5 +15,5 @@ env:
 after_success:
  - docker login -u $DOCKER_USER -p $DOCKER_PASS
  - docker build -f Dockerfile -t $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} .
- - docker tag $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} $DOCKER_USER/transliteration-app:travis-$TRAVIS_BUILD_NUMBER
+ - docker tag $DOCKER_USER/transliteration-app:$travis-$TRAVIS_BUILD_NUMBER $DOCKER_USER/transliteration-app
  - docker push $DOCKER_USER/transliteration-app
