@@ -15,7 +15,7 @@ env:
      - secure: anbYYDd+TA8I4Uocwq9Nh25ezd3R2hYA7O8mAKpm9xk8M4nb29aAPB0rjB0uHwtawxCcztzkbbeyy93P0QUDwRKSLojTfT4p0HiQ/IiDdVcrPvHP/30nFW/kU7QEAzC7Io5uU9qcQunnZrL1nfLPjqXtELDDi8RiC3IgT/XF+xv4R2CEvpg8UhdLQxXZWQ7PWDwLDOzeF+nWdFvTnBxy4wpGy7Ry8BLb6Lf/PDj5pQn4Jv55iBaMJ0w3budsFRUjL+3zuLysyR6ioAhtcsb4d7KUP98/yKsAfMdKckqBGoVZ14JVQThBzmEk83PKgVbA2SdWtd2lTFAjNo/+TT2UMH7XhrGvr2Ak8vOXtM1CvPx6/gMRzynIHAZqRiYx1AjIvphoDtduE0Zov9r91DSt1k4U88PQ41vRJhK2MH4JpRxQIXvU7WaOkWeNYb18SBBLRzxIPNIdOae8ox90tA6BiD1UxP4w+CdC/zu8HYqOX/7fmtRBE7TWauhOnEujP1Fcebrk+pAqHPW0cbxOQ7uM3xdEyI0dS40xicJAt5qhqr+SjZa98UHqfSB1p83VcD/erepXm+rQWWTlqdoGd3ebfOyWPgn88qmD3fSDy+Mmg+ArVY8huwWRgWPvRikFKoX+IDHnvym8W4QZ2OZ6Oy2g4D1MOvNMw6asds3ploHJ1Yg=
 after_success:
  — docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
- — export REPO=$DOCKER_USER/k-auth
+ — export REPO=$DOCKER_USER/transliteration-app
  — export TAG=`if [ “$TRAVIS_BRANCH” == “master” ]; then echo “latest”; else echo $TRAVIS_BRANCH ; fi`
  — echo $REPO:$TAG:${TRAVIS_COMMIT::6}
  — docker build -f Dockerfile -t $REPO:${TRAVIS_COMMIT::6} .
