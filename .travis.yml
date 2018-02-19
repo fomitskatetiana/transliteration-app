@@ -13,10 +13,10 @@ before_install:
 - pip install --user awscli
 - export PATH=$PATH:$HOME/.local/bin
 after_success:
-- eval $(aws ecr get-login --region us-east-2)
-- docker build -f Dockerfile -t transliteration-app:$travis-$TRAVIS_BUILD_NUMBER .
-- docker tag transliteration-app:$travis-$TRAVIS_BUILD_NUMBER 996597326211.dkr.ecr.us-east-2.amazonaws.com/transliteration-app
-- docker push 996597326211.dkr.ecr.us-east-2.amazonaws.com/transliteration-app
+- aws ecr get-login --no-include-email --region us-east-2
+- docker build -f Dockerfile -t transliteration-app .
+- docker tag transliteration-app:latest 996597326211.dkr.ecr.us-east-2.amazonaws.com/transliteration-app:latest
+- docker push 996597326211.dkr.ecr.us-east-2.amazonaws.com/transliteration-app:latest
 notifications:
   email:
     recipients:
