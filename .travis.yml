@@ -1,21 +1,21 @@
 language: java
-jdk: oraclejdk8
-services:
- — docker
-cache:
-  directories:
-  - "$HOME/.m2"
-env:
- global:
-  # DOCKER_EMAIL:
-     - secure: aZzC4WdtmaCM6N8sCK7IHCCdpKIXMNVuhnigBhSqzyUYi54IyY3DUbGBKwagT0ESSTbWg8rCkj6tqdgx/Eb6vVrXQzB+ze27ZlGERS1ec8M4wAAfco8HptfaUjEJejUwO7OSIR4nzObbl5mGaQu36DatXI2XPA92jkioSRqjBZwHScrsSjskPo6aUnUDgxUCNyoxLC0Ag+kS3SWzRsnDEcQX2IPJ2Q6NUtzTznrCaG82JNUGsdN96xRq+GnIDP8QZE7AczPluSotL+7wizVPplFiUAx/Z1uXxCRe3U7eubty3Q7gBUr2fYrFPHwEtuxD1+CzeseoB3VyjUHGY07Qck/FesT1zgMCYfDV0+IvTnrBC95vY3mYZH9Jku5I4mScJ/Qdow1SriVY45C9yWEw1+gRgdM5BWw34XbY1w28BeblvqnLsizJTc3RE8z0xOa779MTcuSdYimxnkCN8YvxsznxW8vEDu3/+0WRB2WHCw2EjylHED0cKFVy6r+j8v5iCqsxNKyIEccXpu9vWWKo+1YGAtYtVPvJH0jLB2fL4VF9IQzUKKUSpL3Bjjw0Bc9V2CHbZn2iPfDCZg8Ke7C82jCPUyAttHYh8vr8UakWQVMzTY9rX1qiQLS/HalCW0edFSr2xXMO9tJGR27d3/RlewizZtrKcHoDiM9kfO9jSOA=
-    # DOCKER_USER:
-     - secure: YzBY/1QS+TEklQTZZRfI94oYMA5++yV/hhy/bhinzECDaFfPkRBocUq/3Q1nOJSvybyaaEOOfQbMXAW0Z/OE5lmSgfibPAljdEb8A3D2bSe1LdK14aJ/pcjbnmOD3xfi/U7WZFuXaxE9WYE/LzypywvyuWgMPGYSZPStmRfGI2FNd3+diyJkP5Zi3YywSNpTUb3jnWwUACy7rDjjVDreqmRfr7ixxcunUIgd/F/pWf7wUSgksvBpDk70dE/4sHb6/tqmCD4g51JxQS4MX94lWyiL9NABsY+1cVsxlh448HVKf9TgeZJvTDw+0rqWwWWgUgG1gaNFwf5Kt+q0WOh79A+rEFNqhzU4Xt0SLRxmFaA3CJy3NuqJ0sH0GlndDUSIxihJHWfZTHA4G03tJLsPG/26071EQkO3ZjkplmWUjwNyOXKKFCbdL0pyZRofaeO5YhGrHXiYok0ozXMkZQDseZcswv7NqD7KUMmrERVg+I2WUCzQ+OYFhYsptIZdeRVlgJvhwMUXyFOky4sjT+DTwyn1m4LoXv4TiBd5MCjnKHITB/TiSuKi9ntTLPaTfwpZBoQ6R7kA+94keK+EbU8H6o08S5rECfApYXn/x7yoCvttWo6+jjcz78RNDBWA3lKaE8nLiQ7aJCpJDG0nlqQMLr4Q3hLVLOY3Cdtls/k4Nkg=
-    # DOCKER_PASS:
-     - secure: anbYYDd+TA8I4Uocwq9Nh25ezd3R2hYA7O8mAKpm9xk8M4nb29aAPB0rjB0uHwtawxCcztzkbbeyy93P0QUDwRKSLojTfT4p0HiQ/IiDdVcrPvHP/30nFW/kU7QEAzC7Io5uU9qcQunnZrL1nfLPjqXtELDDi8RiC3IgT/XF+xv4R2CEvpg8UhdLQxXZWQ7PWDwLDOzeF+nWdFvTnBxy4wpGy7Ry8BLb6Lf/PDj5pQn4Jv55iBaMJ0w3budsFRUjL+3zuLysyR6ioAhtcsb4d7KUP98/yKsAfMdKckqBGoVZ14JVQThBzmEk83PKgVbA2SdWtd2lTFAjNo/+TT2UMH7XhrGvr2Ak8vOXtM1CvPx6/gMRzynIHAZqRiYx1AjIvphoDtduE0Zov9r91DSt1k4U88PQ41vRJhK2MH4JpRxQIXvU7WaOkWeNYb18SBBLRzxIPNIdOae8ox90tA6BiD1UxP4w+CdC/zu8HYqOX/7fmtRBE7TWauhOnEujP1Fcebrk+pAqHPW0cbxOQ7uM3xdEyI0dS40xicJAt5qhqr+SjZa98UHqfSB1p83VcD/erepXm+rQWWTlqdoGd3ebfOyWPgn88qmD3fSDy+Mmg+ArVY8huwWRgWPvRikFKoX+IDHnvym8W4QZ2OZ6Oy2g4D1MOvNMw6asds3ploHJ1Yg=
-after_success:
- — docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
- — docker build -f Dockerfile -t $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} .
- — docker tag $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} $DOCKER_USER/transliteration-app:latest
- — docker tag $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} $DOCKER_USER/transliteration-app:travis-$TRAVIS_BUILD_NUMBER
- — docker push $DOCKER_USER/transliteration-app
+                                               jdk: oraclejdk8
+                                               sudo: required
+                                               services:
+                                                — docker
+                                               cache:
+                                                 directories:
+                                                 - "$HOME/.m2"
+                                               env:
+                                                global:
+                                                 # DOCKER_EMAIL:
+                                                    - secure: aZzC4WdtmaCM6N8sCK7IHCCdpKIXMNVuhnigBhSqzyUYi54IyY3DUbGBKwagT0ESSTbWg8rCkj6tqdgx/Eb6vVrXQzB+ze27ZlGERS1ec8M4wAAfco8HptfaUjEJejUwO7OSIR4nzObbl5mGaQu36DatXI2XPA92jkioSRqjBZwHScrsSjskPo6aUnUDgxUCNyoxLC0Ag+kS3SWzRsnDEcQX2IPJ2Q6NUtzTznrCaG82JNUGsdN96xRq+GnIDP8QZE7AczPluSotL+7wizVPplFiUAx/Z1uXxCRe3U7eubty3Q7gBUr2fYrFPHwEtuxD1+CzeseoB3VyjUHGY07Qck/FesT1zgMCYfDV0+IvTnrBC95vY3mYZH9Jku5I4mScJ/Qdow1SriVY45C9yWEw1+gRgdM5BWw34XbY1w28BeblvqnLsizJTc3RE8z0xOa779MTcuSdYimxnkCN8YvxsznxW8vEDu3/+0WRB2WHCw2EjylHED0cKFVy6r+j8v5iCqsxNKyIEccXpu9vWWKo+1YGAtYtVPvJH0jLB2fL4VF9IQzUKKUSpL3Bjjw0Bc9V2CHbZn2iPfDCZg8Ke7C82jCPUyAttHYh8vr8UakWQVMzTY9rX1qiQLS/HalCW0edFSr2xXMO9tJGR27d3/RlewizZtrKcHoDiM9kfO9jSOA=
+                                                   # DOCKER_USER:
+                                                    - secure: YzBY/1QS+TEklQTZZRfI94oYMA5++yV/hhy/bhinzECDaFfPkRBocUq/3Q1nOJSvybyaaEOOfQbMXAW0Z/OE5lmSgfibPAljdEb8A3D2bSe1LdK14aJ/pcjbnmOD3xfi/U7WZFuXaxE9WYE/LzypywvyuWgMPGYSZPStmRfGI2FNd3+diyJkP5Zi3YywSNpTUb3jnWwUACy7rDjjVDreqmRfr7ixxcunUIgd/F/pWf7wUSgksvBpDk70dE/4sHb6/tqmCD4g51JxQS4MX94lWyiL9NABsY+1cVsxlh448HVKf9TgeZJvTDw+0rqWwWWgUgG1gaNFwf5Kt+q0WOh79A+rEFNqhzU4Xt0SLRxmFaA3CJy3NuqJ0sH0GlndDUSIxihJHWfZTHA4G03tJLsPG/26071EQkO3ZjkplmWUjwNyOXKKFCbdL0pyZRofaeO5YhGrHXiYok0ozXMkZQDseZcswv7NqD7KUMmrERVg+I2WUCzQ+OYFhYsptIZdeRVlgJvhwMUXyFOky4sjT+DTwyn1m4LoXv4TiBd5MCjnKHITB/TiSuKi9ntTLPaTfwpZBoQ6R7kA+94keK+EbU8H6o08S5rECfApYXn/x7yoCvttWo6+jjcz78RNDBWA3lKaE8nLiQ7aJCpJDG0nlqQMLr4Q3hLVLOY3Cdtls/k4Nkg=
+                                                   # DOCKER_PASS:
+                                                    - secure: anbYYDd+TA8I4Uocwq9Nh25ezd3R2hYA7O8mAKpm9xk8M4nb29aAPB0rjB0uHwtawxCcztzkbbeyy93P0QUDwRKSLojTfT4p0HiQ/IiDdVcrPvHP/30nFW/kU7QEAzC7Io5uU9qcQunnZrL1nfLPjqXtELDDi8RiC3IgT/XF+xv4R2CEvpg8UhdLQxXZWQ7PWDwLDOzeF+nWdFvTnBxy4wpGy7Ry8BLb6Lf/PDj5pQn4Jv55iBaMJ0w3budsFRUjL+3zuLysyR6ioAhtcsb4d7KUP98/yKsAfMdKckqBGoVZ14JVQThBzmEk83PKgVbA2SdWtd2lTFAjNo/+TT2UMH7XhrGvr2Ak8vOXtM1CvPx6/gMRzynIHAZqRiYx1AjIvphoDtduE0Zov9r91DSt1k4U88PQ41vRJhK2MH4JpRxQIXvU7WaOkWeNYb18SBBLRzxIPNIdOae8ox90tA6BiD1UxP4w+CdC/zu8HYqOX/7fmtRBE7TWauhOnEujP1Fcebrk+pAqHPW0cbxOQ7uM3xdEyI0dS40xicJAt5qhqr+SjZa98UHqfSB1p83VcD/erepXm+rQWWTlqdoGd3ebfOyWPgn88qmD3fSDy+Mmg+ArVY8huwWRgWPvRikFKoX+IDHnvym8W4QZ2OZ6Oy2g4D1MOvNMw6asds3ploHJ1Yg=
+                                               after_success:
+                                                — docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+                                                — docker build -f Dockerfile -t $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} .
+                                                — docker tag $DOCKER_USER/transliteration-app:${TRAVIS_COMMIT::6} $DOCKER_USER/transliteration-app:travis-$TRAVIS_BUILD_NUMBER
+                                                — docker push $DOCKER_USER/transliteration-app
