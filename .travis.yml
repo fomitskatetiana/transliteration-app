@@ -14,7 +14,7 @@ before_install:
 after_success:
 - pip install --user awscli
 - export PATH=$PATH:$HOME/.local/bin
-- aws ecr get-login --region us-east-2 | sed 's|https://||'
+- eval $(aws ecr get-login --region us-east-2 --no-include-email)
 - docker build -f Dockerfile -t transliteration-app .
 - docker tag transliteration-app:latest 996597326211.dkr.ecr.us-east-2.amazonaws.com/transliteration-app:latest
 - docker push 996597326211.dkr.ecr.us-east-2.amazonaws.com/transliteration-app:latest
