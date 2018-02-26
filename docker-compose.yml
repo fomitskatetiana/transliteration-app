@@ -1,0 +1,10 @@
+version: '3'
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - /namesconvertor/src/
+    ports:
+      - "8080:8080"
+    image: transliteration-app

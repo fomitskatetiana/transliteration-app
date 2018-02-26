@@ -18,9 +18,14 @@ public class TransliterationController {
         this.transliterationService = transliterationService;
     }
 
-    @RequestMapping(value = "/transliterate", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     Map<String, String> transliterate(@RequestParam String names) {
         return transliterationService.convertUkrainianToEnglish(names);
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    String greet() {
+        return "Welcome to transliteration service";
     }
 
 }
